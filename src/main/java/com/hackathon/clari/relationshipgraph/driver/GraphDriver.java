@@ -29,7 +29,7 @@ public class GraphDriver {
 
         public static synchronized Driver getBoltDriver() {
             if (driver == null) {
-                driver = GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "Clarius01!"));
+                driver = GraphDatabase.driver("bolt://192.168.29.31:7687", AuthTokens.basic("neo4j", "Clarius01!"));
             }
             return driver;
         }

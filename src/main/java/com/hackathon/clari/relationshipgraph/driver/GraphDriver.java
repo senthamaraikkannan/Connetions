@@ -9,16 +9,21 @@ import org.neo4j.driver.SessionConfig;
 
 public class GraphDriver {
 
-    public static Driver getBoltInstance() {
-        return LazyHolder.getBoltDriver();
+    public static final String URL_SEPARATOR = ":";
+    public static final String DRIVER_SEPARATOR = URL_SEPARATOR + "//";
+
+    public static Driver getBoltInstance(final GraphConfig propValues) {
+        return LazyHolder.getBoltDriver(propValues);
     }
 
-    public static Session getSession() {
-        return getBoltInstance().session();
+    public static Session getSession() throws Exception {
+        final GraphConfig propValues = GraphConfigPropValues.getPropValues();
+        return getBoltInstance(propValues).session(SessionConfig.forDatabase(propValues.getDatabaseName()));
     }
 
-    public static Session getSession(final String databaseName) {
-        return getBoltInstance().session(SessionConfig.forDatabase(databaseName));
+    public static Session getSession(final String databaseName) throws Exception {
+        final GraphConfig propValues = GraphConfigPropValues.getPropValues();
+        return getBoltInstance(propValues).session(SessionConfig.forDatabase(databaseName));
     }
 
     private static class LazyHolder {
@@ -27,15 +32,14 @@ public class GraphDriver {
         private LazyHolder() {
         }
 
-        public static synchronized Driver getBoltDriver() {
+        public static synchronized Driver getBoltDriver(final GraphConfig propValues) {
             if (driver == null) {
                 try {
-                    final GraphConfig propValues = GraphConfigPropValues.getPropValues();
                     final String uri = new StringBuilder()
                             .append(propValues.getDriver())
-                            .append("://")
+                            .append(DRIVER_SEPARATOR)
                             .append(propValues.getHostName())
-                            .append(":")
+                            .append(URL_SEPARATOR)
                             .append(propValues.getPort())
                             .toString();
 

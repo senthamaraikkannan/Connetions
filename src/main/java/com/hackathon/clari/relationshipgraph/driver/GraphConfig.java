@@ -10,6 +10,7 @@ public class GraphConfig {
     public static final String USER_NAME = "userName";
     public static final String PASSWORD = "password";
     public static final String DRIVER = "driver";
+    public static final String DATABASE_NAME = "databaseName";
 
     @JsonProperty(DRIVER)
     private final String driver;
@@ -19,6 +20,9 @@ public class GraphConfig {
 
     @JsonProperty(PORT)
     private final int port;
+
+    @JsonProperty(DATABASE_NAME)
+    private final String databaseName;
 
     @JsonProperty(USER_NAME)
     private final String userName;
@@ -30,11 +34,13 @@ public class GraphConfig {
     public GraphConfig(@JsonProperty(DRIVER) final String driver,
                        @JsonProperty(HOST_NAME) final String hostName,
                        @JsonProperty(PORT) final int port,
+                       @JsonProperty(DATABASE_NAME) final String databaseName,
                        @JsonProperty(USER_NAME) final String userName,
                        @JsonProperty(PASSWORD) final String password) {
         this.driver = driver;
         this.hostName = hostName;
         this.port = port;
+        this.databaseName = databaseName;
         this.userName = userName;
         this.password = password;
     }
@@ -57,5 +63,9 @@ public class GraphConfig {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getDatabaseName() {
+        return databaseName;
     }
 }

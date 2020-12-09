@@ -60,7 +60,7 @@ public class HackathonRelationshipInsightsService {
     public List<UserAndActivityCountMap> apply(final CypherQueryParam cypherQueryParam1) {
 
 
-        try (final Session session = GraphDriver.getSession("d0000000013")) {
+        try (final Session session = GraphDriver.getSession()) {
             final String internalConnectionQuery = getActivityCountCypher(cypherQueryParam1.getEmail(), cypherQueryParam1.getIsInternal());
             final List<UserAndActivityCountMap> internalConnections = executeQuery(session, internalConnectionQuery, cypherQueryParam1.getLimit());
 

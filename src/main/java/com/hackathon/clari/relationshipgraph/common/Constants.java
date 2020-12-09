@@ -20,4 +20,6 @@ public class Constants {
     public static final String MEETING = "Meeting";
     public static final String ATTACHMENT_SENT = "Attachment_Sent";
     public static final String ATTACHMENT_RECEIVED = "Attachment_Received";
+    public static final String USER_NAME = "userName";
+    public static final String PATH = "path";
 }

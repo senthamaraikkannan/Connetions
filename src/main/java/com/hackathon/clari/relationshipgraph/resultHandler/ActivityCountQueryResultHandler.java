@@ -1,5 +1,6 @@
 package com.hackathon.clari.relationshipgraph.resultHandler;
 
+import com.hackathon.clari.relationshipgraph.common.Constants;
 import com.hackathon.clari.relationshipgraph.queryParam.CypherQueryParam;
 import com.hackathon.clari.relationshipgraph.queryresponse.UserAndActivityCount;
 import org.neo4j.driver.Result;
@@ -31,7 +32,7 @@ public class ActivityCountQueryResultHandler extends QueryResultHandler<CypherQu
 
             sharedActivityCounts.stream().forEach(o -> activityMap.putAll((Map<String, Object>) o));
 
-            final UserAndActivityCount userAndActivityCount = new UserAndActivityCount(String.valueOf(resultMap.get("userName")),
+            final UserAndActivityCount userAndActivityCount = new UserAndActivityCount(String.valueOf(resultMap.get(Constants.USER_NAME)),
                     activityMap,
                     email,
                     getActivityScore(activityMap));

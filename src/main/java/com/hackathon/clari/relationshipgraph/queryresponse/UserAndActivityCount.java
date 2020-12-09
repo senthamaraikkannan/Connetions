@@ -7,18 +7,18 @@ import java.util.Map;
  * Date: 08/12/20
  * Time: 9:02 AM
  */
-public class UserAndActivityCountMap {
+public class UserAndActivityCount extends Response {
 
     private final String userName;
     private final Map<String, Object> activityCountMap;
     private final String userEmail;
-    private final Long activityScore;
+    private final Integer activityScore;
 
 
-    public UserAndActivityCountMap(final String userName,
-                                   final Map<String, Object> activityCountMap,
-                                   final String userEmail,
-                                   final Long activityScore) {
+    public UserAndActivityCount(final String userName,
+                                final Map<String, Object> activityCountMap,
+                                final String userEmail,
+                                final Integer activityScore) {
         this.userName = userName;
         this.activityCountMap = activityCountMap;
         this.userEmail = userEmail;
@@ -37,7 +37,7 @@ public class UserAndActivityCountMap {
         return userEmail;
     }
 
-    public Long getActivityScore() {
+    public Integer getActivityScore() {
         return activityScore;
     }
 

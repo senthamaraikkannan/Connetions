@@ -5,17 +5,13 @@ package com.hackathon.clari.relationshipgraph.queryParam;
  * Date: 08/12/20
  * Time: 11:48 AM
  */
-public class CypherQueryParam implements  QueryParam{
+public class DetailsQueryParam implements QueryParam {
 
     private final String email;
-    private final Integer limit;
     private final Boolean isInternal;
 
-    public CypherQueryParam(final String email,
-                            final Integer limit,
-                            final Boolean isInternal) {
+    public DetailsQueryParam(final String email, final Boolean isInternal) {
         this.email = email;
-        this.limit = limit;
         this.isInternal = isInternal;
     }
 
@@ -23,11 +19,7 @@ public class CypherQueryParam implements  QueryParam{
         return email;
     }
 
-    public Integer getLimit() {
-        return limit;
-    }
-
-    public Boolean getIsInternal() {
+    public Boolean getInternal() {
         return isInternal;
     }
 }

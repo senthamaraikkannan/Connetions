@@ -22,7 +22,7 @@ import java.util.List;
  * Date: 09/12/20
  * Time: 11:47 AM
  */
-public class SearchService extends ActivityGraphService<SearchQueryParam, SearchResponse> {
+public class SearchService extends ActivityGraphService<SearchQueryParam, List<SearchResponse>> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SearchService.class);
 

@@ -19,7 +19,7 @@ import java.util.List;
  * Date: 09/12/20
  * Time: 11:47 AM
  */
-public class ActivityCountService extends ActivityGraphService<CypherQueryParam, UserAndActivityCount> {
+public class ActivityCountService extends ActivityGraphService<CypherQueryParam, List<UserAndActivityCount>> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ActivityCountService.class);
 

@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * Date: 09/12/20
  * Time: 11:47 AM
  */
-public class TopConnectionService extends ActivityGraphService<CypherQueryParam, ConnectionsResponse> {
+public class TopConnectionService extends ActivityGraphService<CypherQueryParam, List<ConnectionsResponse>> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TopConnectionService.class);
 

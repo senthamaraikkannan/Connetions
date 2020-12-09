@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -25,12 +26,15 @@ public class DetailsService extends ActivityGraphService<DetailsQueryParam, Conn
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DetailsService.class);
 
-    public List<ConnectionsResponse> apply(final DetailsQueryParam detailsQueryParam) {
+    public ConnectionsResponse apply(final DetailsQueryParam detailsQueryParam) {
 
 
         final List<UserAndActivityCount> internalConnections = new ActivityCountSpecificUserService().apply(detailsQueryParam);
 
         final List<String> topUserList = internalConnections.stream().map(UserAndActivityCount::getUserEmail).collect(Collectors.toList());
+
+        if (topUserList == null || topUserList.isEmpty())
+            return new ConnectionsResponse("", Collections.EMPTY_MAP, "", 0, null);
 
         final Map<String, UserAndLastEngaged> userAndLastEngagedMap = new LastEngagedDateService(topUserList).apply(new CypherQueryParam(detailsQueryParam.getEmail(), null, detailsQueryParam.getInternal()))
                 .stream()
@@ -54,6 +58,6 @@ public class DetailsService extends ActivityGraphService<DetailsQueryParam, Conn
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        return connectionsResponseList;
+        return connectionsResponseList.get(0);
     }
 }

@@ -18,7 +18,7 @@ import java.util.List;
  * Date: 09/12/20
  * Time: 11:47 AM
  */
-public class ActivityCountSpecificUserService extends ActivityGraphService<DetailsQueryParam, UserAndActivityCount> {
+public class ActivityCountSpecificUserService extends ActivityGraphService<DetailsQueryParam, List<UserAndActivityCount>> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ActivityCountSpecificUserService.class);
 

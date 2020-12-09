@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  * Date: 09/12/20
  * Time: 11:47 AM
  */
-public class LastEngagedDateService extends ActivityGraphService<CypherQueryParam, UserAndLastEngaged> {
+public class LastEngagedDateService extends ActivityGraphService<CypherQueryParam, List<UserAndLastEngaged>> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LastEngagedDateService.class);
     private final List<String> userEmailList;

@@ -5,6 +5,7 @@ import com.hackathon.clari.relationshipgraph.queryParam.DetailsQueryParam;
 import com.hackathon.clari.relationshipgraph.queryParam.SearchQueryParam;
 import com.hackathon.clari.relationshipgraph.queryresponse.ConnectionsResponse;
 import com.hackathon.clari.relationshipgraph.queryresponse.SearchResponse;
+import com.hackathon.clari.relationshipgraph.queryresponse.TopConnectionsResponse;
 import com.hackathon.clari.relationshipgraph.service.DetailsService;
 import com.hackathon.clari.relationshipgraph.service.SearchService;
 import com.hackathon.clari.relationshipgraph.service.TopConnectionService;
@@ -24,13 +25,13 @@ import java.util.List;
 public class ConnectionController {
 
     @GetMapping("/top-connection")
-    public List<ConnectionsResponse> getTopConnection(@RequestParam("isInternal") final boolean isInternal,
-                                                      @RequestParam("email") final String email,
-                                                      @RequestParam("limit") final int limit) {
+    public TopConnectionsResponse getTopConnection(@RequestParam("isInternal") final boolean isInternal,
+                                                   @RequestParam("email") final String email,
+                                                   @RequestParam("limit") final int limit) {
 
         final CypherQueryParam cypherQueryParam = new CypherQueryParam(email, limit, isInternal);
         final TopConnectionService topConnectionService = new TopConnectionService();
-        return topConnectionService.apply(cypherQueryParam);
+        return new TopConnectionsResponse(topConnectionService.apply(cypherQueryParam));
     }
 
     @GetMapping("/search")
@@ -42,7 +43,7 @@ public class ConnectionController {
     }
 
     @GetMapping("/details")
-    public List<ConnectionsResponse> getDetails(@RequestParam("email") final String email,
+    public ConnectionsResponse getDetails(@RequestParam("email") final String email,
                                                 @RequestParam("isInternal") final boolean isInternal) {
 
         final DetailsQueryParam cypherQueryParam = new DetailsQueryParam(email, isInternal);

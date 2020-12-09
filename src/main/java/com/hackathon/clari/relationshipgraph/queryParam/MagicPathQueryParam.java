@@ -9,10 +9,14 @@ public class MagicPathQueryParam implements QueryParam {
 
     private final String email;
     private final String searchText;
+    private final boolean isAccountSearch;
 
-    public MagicPathQueryParam(final String email, final String searchText) {
+    public MagicPathQueryParam(final String email,
+                               final String searchText,
+                               final boolean isAccountSearch) {
         this.email = email;
         this.searchText = searchText;
+        this.isAccountSearch = isAccountSearch;
     }
 
     public String getEmail() {
@@ -21,5 +25,9 @@ public class MagicPathQueryParam implements QueryParam {
 
     public String getSearchText() {
         return searchText;
+    }
+
+    public boolean getIsAccountSearch() {
+        return isAccountSearch;
     }
 }

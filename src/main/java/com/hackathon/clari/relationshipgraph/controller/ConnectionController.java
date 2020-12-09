@@ -56,9 +56,10 @@ public class ConnectionController {
 
     @GetMapping("/magic-path")
     public List<MagicPathResponse> getMagicPath(@RequestParam("email") final String email,
-                                                @RequestParam("searchText") final String searchText) {
+                                                @RequestParam("searchText") final String searchText,
+                                                @RequestParam("isAccountSearch") final boolean isAccountSearch) {
 
-        final MagicPathQueryParam magicPathQueryParam = new MagicPathQueryParam(email, searchText);
+        final MagicPathQueryParam magicPathQueryParam = new MagicPathQueryParam(email, searchText, isAccountSearch);
         final MagicPathService magicPathService = new MagicPathService();
         final List<MagicPathResponse> apply = magicPathService.apply(magicPathQueryParam);
         return apply;

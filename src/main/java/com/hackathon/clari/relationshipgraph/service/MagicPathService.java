@@ -27,7 +27,7 @@ public class MagicPathService extends ActivityGraphService<MagicPathQueryParam, 
     public List<MagicPathResponse> apply(final MagicPathQueryParam magicPathQueryParam) {
 
         try (final Session session = GraphDriver.getSession()) {
-            final String magicPathQuery = MagicPathQueryBuilder.getMagicPath(magicPathQueryParam.getEmail(), magicPathQueryParam.getSearchText());
+            final String magicPathQuery = MagicPathQueryBuilder.getMagicPath(magicPathQueryParam.getEmail(), magicPathQueryParam.getSearchText(), magicPathQueryParam.getIsAccountSearch());
             Result result = executeQuery(session, magicPathQuery);
             final List<MagicPathResponse> results = new MagicPathQueryResultHandler()
                     .getResults(result, magicPathQueryParam);

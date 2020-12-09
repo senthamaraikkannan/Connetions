@@ -7,7 +7,7 @@ class MagicPathServiceTest {
 
     @Test
     public void magicPathTest() {
-        final MagicPathQueryParam cypherQueryParam = new MagicPathQueryParam("will@clari.com", "Chip Cookston");
+        final MagicPathQueryParam cypherQueryParam = new MagicPathQueryParam("will@clari.com", "Chip Cookston", false);
         final MagicPathService service = new MagicPathService();
         service.apply(cypherQueryParam);
         System.exit(0);

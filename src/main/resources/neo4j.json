@@ -1,0 +1,7 @@
+{
+  "driver": "bolt",
+  "hostName": "192.168.29.31",
+  "port": 7687,
+  "userName": "neo4j",
+  "password": "Clarius01!"
+}

@@ -29,7 +29,21 @@ public class GraphDriver {
 
         public static synchronized Driver getBoltDriver() {
             if (driver == null) {
-                driver = GraphDatabase.driver("bolt://192.168.29.31:7687", AuthTokens.basic("neo4j", "Clarius01!"));
+                try {
+                    final GraphConfig propValues = GraphConfigPropValues.getPropValues();
+                    final String uri = new StringBuilder()
+                            .append(propValues.getDriver())
+                            .append("://")
+                            .append(propValues.getHostName())
+                            .append(":")
+                            .append(propValues.getPort())
+                            .toString();
+
+                    driver = GraphDatabase.driver(uri, AuthTokens.basic(propValues.getUserName(), propValues.getPassword()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return driver;
             }
             return driver;
         }

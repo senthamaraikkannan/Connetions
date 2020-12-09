@@ -1,4 +1,4 @@
-package com.hackathon.clari.relationshipgraph.cypherqueryResponse;
+package com.hackathon.clari.relationshipgraph.queryresponse;
 
 import java.util.Map;
 

@@ -1,6 +1,6 @@
 package com.hackathon.clari.relationshipgraph.controller;
 
-import com.hackathon.clari.relationshipgraph.cypherqueryResponse.UserAndActivityCountMap;
+import com.hackathon.clari.relationshipgraph.queryresponse.UserAndActivityCountMap;
 import com.hackathon.clari.relationshipgraph.queryParam.CypherQueryParam;
 import com.hackathon.clari.relationshipgraph.service.HackathonRelationshipInsightsService;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -2,7 +2,7 @@ package com.hackathon.clari.relationshipgraph.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Stopwatch;
-import com.hackathon.clari.relationshipgraph.cypherqueryResponse.UserAndActivityCountMap;
+import com.hackathon.clari.relationshipgraph.queryresponse.UserAndActivityCountMap;
 import com.hackathon.clari.relationshipgraph.driver.GraphDriver;
 import com.hackathon.clari.relationshipgraph.queryParam.CypherQueryParam;
 import org.neo4j.driver.Result;

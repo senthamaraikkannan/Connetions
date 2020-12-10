@@ -39,9 +39,9 @@ public class MagicPathQueryResultHandler extends QueryResultHandler<MagicPathQue
             StreamSupport
                     .stream(path.nodes().spliterator(), false)
                     .forEach(node -> {
-                        final List<String> labels = StreamSupport
+                        final String labels = StreamSupport
                                 .stream(node.labels().spliterator(), false)
-                                .collect(Collectors.toList());
+                                .collect(Collectors.joining(","));
                         final Map<String, Object> properties = node.asMap();
                         nodeList.add(new MagicPathNode(labels, node.id(), properties));
                     });

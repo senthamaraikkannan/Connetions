@@ -10,17 +10,17 @@ import java.util.Map;
  */
 public class MagicPathNode {
 
-    private List<String> label;
+    private String label;
     private long id;
     private Map<String, Object> propertiesMap;
 
-    public MagicPathNode(final List<String> label, final long id, final Map<String, Object> propertiesMap) {
+    public MagicPathNode(final String label, final long id, final Map<String, Object> propertiesMap) {
         this.label = label;
         this.id = id;
         this.propertiesMap = propertiesMap;
     }
 
-    public List<String> getLabel() {
+    public String getLabel() {
         return label;
     }
 

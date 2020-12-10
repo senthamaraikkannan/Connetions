@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -62,7 +63,7 @@ public class ConnectionController {
         final MagicPathQueryParam magicPathQueryParam = new MagicPathQueryParam(email, searchText, isAccountSearch);
         final MagicPathService magicPathService = new MagicPathService();
         final List<MagicPathResponse> apply = magicPathService.apply(magicPathQueryParam);
-        return apply;
+        return apply.stream().limit(5).collect(Collectors.toList());
     }
 
     @GetMapping("/hello")

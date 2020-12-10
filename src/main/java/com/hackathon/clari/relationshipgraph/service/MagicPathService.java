@@ -27,12 +27,21 @@ public class MagicPathService extends ActivityGraphService<MagicPathQueryParam, 
     public List<MagicPathResponse> apply(final MagicPathQueryParam magicPathQueryParam) {
 
         try (final Session session = GraphDriver.getSession()) {
-            final String magicPathQuery = MagicPathQueryBuilder.getMagicPath(magicPathQueryParam.getEmail(), magicPathQueryParam.getSearchText(), magicPathQueryParam.getIsAccountSearch());
-            Result result = executeQuery(session, magicPathQuery);
-            final List<MagicPathResponse> results = new MagicPathQueryResultHandler()
-                    .getResults(result, magicPathQueryParam);
-            LOGGER.info("MagicPath" + new ObjectMapper().writeValueAsString(results));
-            return results;
+            final String firstDegreeMagicPathQuery = MagicPathQueryBuilder.getFirstDegreeMagicPath(magicPathQueryParam.getEmail(), magicPathQueryParam.getSearchText(), magicPathQueryParam.getIsAccountSearch());
+            Result firstDegreeResult = executeQuery(session, firstDegreeMagicPathQuery);
+            if (!firstDegreeResult.hasNext()) {
+                final String magicPathQuery = MagicPathQueryBuilder.getMagicPath(magicPathQueryParam.getEmail(), magicPathQueryParam.getSearchText(), magicPathQueryParam.getIsAccountSearch());
+                Result result = executeQuery(session, magicPathQuery);
+                final List<MagicPathResponse> results = new MagicPathQueryResultHandler()
+                        .getResults(result, magicPathQueryParam);
+                LOGGER.info("MagicPath" + new ObjectMapper().writeValueAsString(results));
+                return results;
+            }else{
+                final List<MagicPathResponse> results = new MagicPathQueryResultHandler()
+                        .getResults(firstDegreeResult, magicPathQueryParam);
+                LOGGER.info("First Degree MagicPath" + new ObjectMapper().writeValueAsString(results));
+                return results;
+            }
         } catch (Exception e) {
             LOGGER.info("Exception:{}", e);
             return Collections.EMPTY_LIST;

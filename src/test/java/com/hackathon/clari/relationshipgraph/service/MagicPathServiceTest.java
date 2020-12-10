@@ -13,4 +13,11 @@ class MagicPathServiceTest {
         System.exit(0);
     }
 
+    @Test
+    public void magicPathTest2() {
+        final MagicPathQueryParam cypherQueryParam = new MagicPathQueryParam("will@clari.com", "Anthony Cerche", false);
+        final MagicPathService service = new MagicPathService();
+        service.apply(cypherQueryParam);
+        System.exit(0);
+    }
 }

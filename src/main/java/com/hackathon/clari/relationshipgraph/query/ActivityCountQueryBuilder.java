@@ -16,7 +16,7 @@ public class ActivityCountQueryBuilder extends CypherQueryBuilder {
         final String user = isInternal ? INTERNAL_USER :
                 EXTERNAL_USER;
 
-        return "MATCH (i:Internal_User)\n" +
+        return "MATCH (i:External_User)\n" +
                 "WHERE i.email='" + userEmail + "'\n" +
                 "MATCH (user)<-[*..1]-(activity)-[*..1]->(i)\n" +
                 "WHERE user:" + user + "\n" +

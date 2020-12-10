@@ -41,6 +41,9 @@ public class DetailsService extends ActivityGraphService<DetailsQueryParam, Conn
                 .collect(Collectors.toMap(UserAndLastEngaged::getUserEmail, Function.identity()));
 
 
+        // generate relative activity scores
+        final Map<Integer, Integer> activityScoreVsPercentileMap = calculatePercentiles(internalConnections.stream().map(UserAndActivityCount::getActivityScore).collect(Collectors.toList()));
+
         final List<ConnectionsResponse> connectionsResponseList = new ArrayList<>();
         internalConnections.stream().forEach(userAndActivityCount -> {
             final String userEmail = userAndActivityCount.getUserEmail();
@@ -48,7 +51,12 @@ public class DetailsService extends ActivityGraphService<DetailsQueryParam, Conn
             if (userAndLastEngagedMap.containsKey(userEmail)) {
                 lastEngagedDate = userAndLastEngagedMap.get(userEmail).getLasEngagedDate();
             }
-            connectionsResponseList.add(new ConnectionsResponse(userAndActivityCount.getUserName(), userAndActivityCount.getActivityCountMap(), userEmail, userAndActivityCount.getActivityScore(), lastEngagedDate));
+            int activityScore = 0;
+            if (activityScoreVsPercentileMap.containsKey(userAndActivityCount.getActivityScore())) {
+                activityScore = activityScoreVsPercentileMap.get(userAndActivityCount.getActivityScore());
+            }
+
+            connectionsResponseList.add(new ConnectionsResponse(userAndActivityCount.getUserName(), userAndActivityCount.getActivityCountMap(), userEmail, activityScore, lastEngagedDate));
         });
 
 

@@ -20,7 +20,7 @@ import static com.hackathon.clari.relationshipgraph.common.Constants.MEETING;
  * Date: 09/12/20
  * Time: 11:54 AM
  */
-public abstract class QueryResultHandler<P extends QueryParam,R extends Response> {
+public abstract class QueryResultHandler<P extends QueryParam, R extends Response> {
 
     private static final Map<String, Integer> ACTIVITY_VS_WEIGHT = new HashMap() {{
         put(MEETING, 10);

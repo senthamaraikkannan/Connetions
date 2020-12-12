@@ -33,7 +33,7 @@ public class ConnectionController {
                                                    @RequestParam("email") final String email,
                                                    @RequestParam("limit") final int limit) {
 
-        final CypherQueryParam cypherQueryParam = new CypherQueryParam(email, limit, isInternal);
+        final CypherQueryParam cypherQueryParam = new CypherQueryParam(email.trim(), limit, isInternal);
         final TopConnectionService topConnectionService = new TopConnectionService();
         return new TopConnectionsResponse(topConnectionService.apply(cypherQueryParam));
     }
@@ -41,7 +41,7 @@ public class ConnectionController {
     @GetMapping("/search")
     public List<SearchResponse> getSearchedUsers(@RequestParam("email") final String email) {
 
-        final SearchQueryParam searchQueryParam = new SearchQueryParam(email);
+        final SearchQueryParam searchQueryParam = new SearchQueryParam(email.trim());
         final SearchService searchService = new SearchService();
         return searchService.apply(searchQueryParam);
     }
@@ -50,7 +50,7 @@ public class ConnectionController {
     public ConnectionsResponse getDetails(@RequestParam("email") final String email,
                                           @RequestParam("isInternal") final boolean isInternal) {
 
-        final DetailsQueryParam cypherQueryParam = new DetailsQueryParam(email, isInternal);
+        final DetailsQueryParam cypherQueryParam = new DetailsQueryParam(email.trim(), isInternal);
         final DetailsService detailsService = new DetailsService();
         return detailsService.apply(cypherQueryParam);
     }
@@ -60,7 +60,7 @@ public class ConnectionController {
                                                 @RequestParam("searchText") final String searchText,
                                                 @RequestParam("isAccountSearch") final boolean isAccountSearch) {
 
-        final MagicPathQueryParam magicPathQueryParam = new MagicPathQueryParam(email, searchText, isAccountSearch);
+        final MagicPathQueryParam magicPathQueryParam = new MagicPathQueryParam(email.trim(), searchText, isAccountSearch);
         final MagicPathService magicPathService = new MagicPathService();
         final List<MagicPathResponse> apply = magicPathService.apply(magicPathQueryParam);
         return apply.stream().limit(5).collect(Collectors.toList());
